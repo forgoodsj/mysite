@@ -1,15 +1,24 @@
 #coding=utf-8
 from django.db import models
-
+import datetime
+from django.utils import timezone
 # polls应用的模型
 class Question(models.Model):
     question_text = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
+    def __str__(self):
+    #给你的模型添加__str__()方法会使你自己在使用交互式命令行时看得更加方便，而且会在Django自动生成的管理界面中使用对象的这种表示。
+        return self.question_text
+    def was_published_recently(self):
+    #添加一个自定义方法
+        return self.pubdate >=timezone.now()-datetime.timedelta(Days=1)
 
 class Choice(models.Model):
     question = models.ForeignKey(Question)
     choice_text = models.CharField(max_length=200)
     votes = models.IntegerField(default=0)
+    def __str__(self):
+        return self.choice_text
 '''
 每个模型都用一个类表示，该类继承自django.db.models.Model。每个模型都有一些类变量，在模型中每个类变量都代表了数据库中的一个字段。
 
