@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+
+
+<html>
+<head>
+{% if request.user.is_authenticated %}
+    {{ request.user.username }}，您好！
+{% else %}
+    请登陆，这里放登陆链接
+    {{ request.path }}
+    {{ request.GET.urlencode }}
+{% endif %}
+
+</body>
+</html>

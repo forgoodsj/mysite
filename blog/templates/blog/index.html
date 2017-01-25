@@ -1,0 +1,12 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+
+{% if high_score_blog_list %}
+    <ul>
+    {% for blog in high_score_blog_list %}
+        <li><a href="{% url 'blog:detail' title.id %}">{{ title.title }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
