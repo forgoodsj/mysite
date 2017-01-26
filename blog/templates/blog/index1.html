@@ -1,0 +1,7 @@
+{% load staticfiles %}
+
+    <ul>
+        <li><a href="{% url 'blog:article' %}">{{ article }}</a></li>
+        <li><a href="{% url 'blog:tag' %}">{{ tag }}</a></li>
+        <li><a href="{% url 'blog:author' %}">{{ author}}</a></li>
+    </ul>
