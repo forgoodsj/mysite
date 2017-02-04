@@ -4,6 +4,7 @@ header {
   width:100%;
   background-color:#000;
   color:#FFF;
+  font-family: Helvetica, Arial, "Microsoft YaHei", sans-serif;
 }
 header img {
   position:absolute;
