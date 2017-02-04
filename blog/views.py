@@ -5,16 +5,6 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 
 # Create your views here.
-'''
-class IndexView(generic.ListView):
-
-    template_name = 'blog/index.html'
-    context_object_name = 'high_score_blog_list'
-
-    def get_queryset(self):
-        return Article.objects.order_by('-score')[:5]
-
-'''
 
 def index(request):
 
@@ -41,15 +31,23 @@ class TagView(generic.ListView):
 
 class ArticleView(generic.ListView):
 
-    template_name = 'blog/article.html'
+    template_name = 'blog/HomePage.html'
     context_object_name = 'article_list'
 
     def get_queryset(self):
         return Article.objects.order_by('title')[:5]
 
-class DetailView(generic.DetailView):
-    model = Article
-    template_name = 'blog/detail.html'
+
+def detail(request, article_id):
+    p = get_object_or_404(Article, pk=article_id)
+    img_list = ['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg']
+    return render(request, 'blog/detail.html', {
+            'article': p,
+            'article_list': Article.objects.order_by('title')[:5],
+            'img_list':img_list,
+            'img':'1.jpg'
+
+        })
 
 
 

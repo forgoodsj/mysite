@@ -23,6 +23,7 @@ class Article(models.Model):
     content = models.TextField()
     score = models.IntegerField()  # 文章的打分
     tags = models.ManyToManyField('Tag')
+    #img = models.
 
     def __str__(self):
         return self.title

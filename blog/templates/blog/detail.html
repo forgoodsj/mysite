@@ -1,12 +1,51 @@
-<meta charset="utf-8" />
+<!doctype html>
 {% load staticfiles %}
-<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+<html>
+<head>
+<meta charset="utf-8">
+<title>文章正文</title>
+<link rel="stylesheet" type="text/css" href="{% static 'blog/article.css' %}"/>
+</head>
 
-
-<h1>{{ article.title }}</h1>
-<h2>作者：{{article.author}}</h2>
-<text>{{article.content}}</text>
-
-
-
-
+<body>
+<header>
+  <a href="HomePage.html"><img src="{%static 'blog/images/logo.png' %}" alt="logo"/></a>
+  <a href="HomePage.html"><h2>XXX网站</h2></a>
+  <div id=nav>
+    <ul>
+      <li><a href="#"  id="news">正文</a></li>
+      <li><a href="#">关于我们</a></li>
+      <li><a href="#">联系我们</a></li>
+    </ul>
+  </div>
+</header>
+<div id="main">
+  <article>
+  <div class="title">
+      <h2>{{ article.title}}</h2>
+    </div>
+    <div class="author">
+      <img src="{%static 'blog/images/author.png' %}" alt="author"/>
+      <p>{{ article.author}}</p>
+    </div>
+    <hr/>
+    <div class="content">
+      {{ article.content}}
+    </div>
+  </article>
+  <aside>
+    <p>相关推荐</p>
+    {% if article_list %}
+    <ul>
+      {% for article in article_list %}
+      <li><a href="{% url 'blog:detail' article.id %}">{{ article.title }}</a></li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+  </aside>
+</div>
+<footer>
+  <p>©&nbsp;这里是版权信息</p>
+</footer>
+</body>
+</html>
